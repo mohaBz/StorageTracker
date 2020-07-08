@@ -17,7 +17,7 @@
         />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/insert_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -44,16 +44,19 @@
 
     <EditText
         android:layout_margin="10dp"
-        
+        android:inputType="textPersonName"
         android:id="@+id/rd_product_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Product Namme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/insert_button">
+
+    </EditText>
     <EditText
         android:layout_margin="10dp"
         android:id="@+id/rd_product_price"
+        android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Price"
@@ -64,7 +67,10 @@
         android:id="@+id/rd_product_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
         android:hint="Amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rd_product_price"></EditText>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

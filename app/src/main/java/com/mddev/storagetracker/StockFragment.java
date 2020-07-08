@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mddev.storagetracker.database.StockProduct;
 import com.mddev.storagetracker.database.TruckProduct;
 
 import java.util.List;
@@ -31,19 +31,22 @@ import dagger.android.support.DaggerFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TruckFragment extends DaggerFragment {
-
+public class StockFragment extends DaggerFragment {
     private FloatingActionButton addFab;
     private NavController navController;
     @Inject
     public ViewModelProviderFactory viewModelProviderFactory;
-    private TruckStoreViewModel truckStoreViewModel;
+    private StockStoreViewModel stockStoreViewModel;
     private RecyclerView productRecyclerView;
-    private ProductsAdapter productsAdapter;
+    private StockProductAdapter productsAdapter;
 
-    public TruckFragment() {
+    public StockFragment() {
         // Required empty public constructor
     }
+
+
+
+
 
     @Override
     public void onAttachFragment(@NonNull Fragment childFragment) {
@@ -61,7 +64,7 @@ public class TruckFragment extends DaggerFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        truckStoreViewModel = new ViewModelProvider(this, viewModelProviderFactory).get(TruckStoreViewModel.class);
+        stockStoreViewModel = new ViewModelProvider(this, viewModelProviderFactory).get(StockStoreViewModel.class);
         addFab = view.findViewById(R.id.add_to_truck);
         productRecyclerView = view.findViewById(R.id.rv_product_list);
         productRecyclerView.setHasFixedSize(true);
@@ -71,19 +74,17 @@ public class TruckFragment extends DaggerFragment {
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_truckFragment_to_addProductFragment);
+                navController.navigate(R.id.action_stockFragment_to_addProductFragment2);
             }
         });
-        productsAdapter = new ProductsAdapter(getContext());
+        productsAdapter = new StockProductAdapter(getContext());
         productRecyclerView.setAdapter(productsAdapter);
-        truckStoreViewModel.loadAllTruckProduct().observe(getViewLifecycleOwner(), new Observer<List<TruckProduct>>() {
+        stockStoreViewModel.loadAllTruckProduct().observe(getViewLifecycleOwner(), new Observer<List<StockProduct>>() {
             @Override
-            public void onChanged(List<TruckProduct> truckProducts) {
-                productsAdapter.setProducts(truckProducts);
+            public void onChanged(List<StockProduct> stockProducts) {
+                productsAdapter.setProducts(stockProducts);
             }
         });
 
     }
-
-
 }

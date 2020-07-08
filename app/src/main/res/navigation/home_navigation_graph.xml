@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation_graph"
+    app:startDestination="@id/truckFragment">
+
+    <fragment
+        android:id="@+id/truckFragment"
+        android:name="com.mddev.storagetracker.TruckFragment"
+        android:label="fragment_truck"
+        tools:layout="@layout/fragment_truck" >
+        <action
+            android:id="@+id/action_truckFragment_to_addProductFragment"
+            app:destination="@id/addProductFragment" />
+        <action
+            android:id="@+id/action_truckFragment_to_extractActivity"
+            app:destination="@id/extractActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProductFragment"
+        android:name="com.mddev.storagetracker.AddProductFragment"
+        android:label="fragment_add_product"
+        tools:layout="@layout/fragment_add_product" />
+    <activity
+        android:id="@+id/extractActivity"
+        android:name="com.mddev.storagetracker.ExtractActivity"
+        android:label="activity_extract"
+        tools:layout="@layout/activity_extract" />
+</navigation>
