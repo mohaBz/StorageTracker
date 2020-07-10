@@ -11,13 +11,15 @@ import androidx.room.Update;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Single;
+
 @Dao
 public interface StockProductDoa  {
     @Query("SELECT * FROM stockStore  Order BY id ")
     LiveData<List<StockProduct>> loadAllProducts();
 
     @Query("SELECT * FROM stockStore Where name=:name")
-    TruckProduct loadProduct(String name);
+    Single<StockProduct> loadProduct(String name);
 
     @Insert
     Completable insertProduct(StockProduct product);

@@ -71,4 +71,16 @@ public class StorageRepository {
     public Single<TruckProduct> getTruckProduct(String name) {
         return storageDataBase.TruckProductDao().loadProduct(name).subscribeOn(Schedulers.io());
     }
+
+    public void deleteFromTruck(TruckProduct truckProduct) {
+        storageDataBase.TruckProductDao().deletProduct(truckProduct).subscribeOn(Schedulers.io()).subscribe();
+    }
+
+    public void deleteFromStock(StockProduct stockProduct) {
+        storageDataBase.StockProductDao().deletProduct(stockProduct).subscribeOn(Schedulers.io()).subscribe();
+    }
+
+    public Single<StockProduct> getStockProduct(String name) {
+        return storageDataBase.StockProductDao().loadProduct(name).subscribeOn(Schedulers.io());
+    }
 }

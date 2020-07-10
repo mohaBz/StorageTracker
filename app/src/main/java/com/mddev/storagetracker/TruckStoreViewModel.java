@@ -9,6 +9,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.Disposable;
+
 public class TruckStoreViewModel extends ViewModel {
 
     private StorageRepository storageRepository;
@@ -26,4 +29,22 @@ public class TruckStoreViewModel extends ViewModel {
         storageRepository.updateProductInTruck(truckProduct);
     }
 
+    public void deleteFromTruck(String name) {
+        storageRepository.getTruckProduct(name).subscribe(new SingleObserver<TruckProduct>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(TruckProduct truckProduct) {
+                    storageRepository.deleteFromTruck(truckProduct);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
+    }
 }

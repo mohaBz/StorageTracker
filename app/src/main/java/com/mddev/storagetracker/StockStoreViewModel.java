@@ -58,4 +58,24 @@ public class StockStoreViewModel extends ViewModel {
             storageRepository.updateProductInTruck(truckProduct);
         }
     }
+
+    public void deleteFromStock(String name) {
+        storageRepository.getStockProduct(name).subscribe(new SingleObserver<StockProduct>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(StockProduct stockProduct) {
+                storageRepository.deleteFromStock(stockProduct);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
+
+    }
 }

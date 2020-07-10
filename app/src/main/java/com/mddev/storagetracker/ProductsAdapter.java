@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     private static final String TAG ="ProductViewHoler" ;
     private List<TruckProduct> products;
     private Context context;
+    private OnDeleteClickListner onDeleteClickListner;
     public ProductsAdapter(Context context) {
         this.context=context;
     }
@@ -30,6 +32,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     public void setProducts(List<TruckProduct> products) {
         this.products = products;
         notifyDataSetChanged();
+    }
+
+    public void setOnDeleteClickListner(OnDeleteClickListner onDeleteClickListner) {
+        this.onDeleteClickListner = onDeleteClickListner;
     }
 
     @NonNull
@@ -62,6 +68,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         private TextView priceTx;
         private TextView amountTx;
         private ImageView productImage;
+        private Button deleteBt;
 
         public ProductViewHoler(@NonNull View itemView) {
             super(itemView);
@@ -69,12 +76,18 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             priceTx=itemView.findViewById(R.id.product_price);
             amountTx=itemView.findViewById(R.id.product_amount);
             productImage=itemView.findViewById(R.id.product_Image);
-
+            deleteBt=itemView.findViewById(R.id.bt_delete);
         }
         public void onbindView(TruckProduct truckProduct){
             nameTx.setText(truckProduct.getName());
             amountTx.setText(""+truckProduct.getAmount());
             priceTx.setText(""+truckProduct.getPrice());
+            deleteBt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDeleteClickListner.onClick(nameTx.getText().toString());
+                }
+            });
             Bitmap bitmap = null;
             if (truckProduct.getImageUri()!=null){
                 try {

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
     private static final String TAG ="ProductViewHoler" ;
     private List<StockProduct> products;
     private Context context;
+    private OnDeleteClickListner onDeleteClickListner;
     public StockProductAdapter(Context context) {
         this.context=context;
     }
@@ -31,6 +33,10 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
     public void setProducts(List<StockProduct> products) {
         this.products = products;
         notifyDataSetChanged();
+    }
+
+    public void setOnDeleteClickListner(OnDeleteClickListner onDeleteClickListner) {
+        this.onDeleteClickListner = onDeleteClickListner;
     }
 
     @NonNull
@@ -63,19 +69,25 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
         private TextView priceTx;
         private TextView amountTx;
         private ImageView productImage;
-
+        private Button deleteBt;
         public ProductViewHoler(@NonNull View itemView) {
             super(itemView);
             nameTx=itemView.findViewById(R.id.product_name);
             priceTx=itemView.findViewById(R.id.product_price);
             amountTx=itemView.findViewById(R.id.product_amount);
             productImage=itemView.findViewById(R.id.product_Image);
-
+            deleteBt=itemView.findViewById(R.id.bt_delete);
         }
         public void onbindView(StockProduct stockProduct){
             nameTx.setText(stockProduct.getName());
             amountTx.setText(""+stockProduct.getAmount());
             priceTx.setText(""+stockProduct.getPrice());
+            deleteBt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onDeleteClickListner.onClick(nameTx.getText().toString());
+                }
+            });
             Bitmap bitmap = null;
             if (stockProduct.getImageUri()!=null){
                 try {
@@ -91,4 +103,5 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
 
         }
     }
+
 }

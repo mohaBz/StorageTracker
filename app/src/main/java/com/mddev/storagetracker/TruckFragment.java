@@ -31,7 +31,7 @@ import dagger.android.support.DaggerFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TruckFragment extends DaggerFragment {
+public class TruckFragment extends DaggerFragment implements OnDeleteClickListner {
 
     private FloatingActionButton addFab;
     private NavController navController;
@@ -75,6 +75,7 @@ public class TruckFragment extends DaggerFragment {
             }
         });
         productsAdapter = new ProductsAdapter(getContext());
+        productsAdapter.setOnDeleteClickListner(this);
         productRecyclerView.setAdapter(productsAdapter);
         truckStoreViewModel.loadAllTruckProduct().observe(getViewLifecycleOwner(), new Observer<List<TruckProduct>>() {
             @Override
@@ -86,4 +87,8 @@ public class TruckFragment extends DaggerFragment {
     }
 
 
+    @Override
+    public void onClick(String name) {
+        truckStoreViewModel.deleteFromTruck(name);
+    }
 }

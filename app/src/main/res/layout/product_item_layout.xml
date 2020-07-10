@@ -12,7 +12,7 @@
     android:layout_margin="5dp"
     />
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="5dp"
@@ -80,5 +80,16 @@
 
                 />
             </LinearLayout>
+        <Button
+            android:id="@+id/bt_delete"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_marginHorizontal="5dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Delete"
+            android:textColor="@android:color/white"
+            />
     </LinearLayout>
+
 </LinearLayout>
