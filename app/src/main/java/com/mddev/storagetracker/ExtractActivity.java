@@ -50,10 +50,32 @@ public class ExtractActivity extends DaggerAppCompatActivity {
         productRv.setLayoutManager(layoutManager);
         extractProductAdapter=new ExtractProductAdapter(this);
         productRv.setAdapter(extractProductAdapter);
-        stockStoreViewModel.loadAllTruckProduct().observe(this, new Observer<List<StockProduct>>() {
+        stockStoreViewModel.loadAllStockProduct().observe(this, new Observer<List<StockProduct>>() {
             @Override
             public void onChanged(List<StockProduct> stockProducts) {
+                stockStoreViewModel.setStockProducts(stockProducts);
                 extractProductAdapter.setProducts(stockProducts);
+            }
+        });
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.radio_to_truck){
+                    stockStoreViewModel.loadAllStockProduct().observe(ExtractActivity.this, new Observer<List<StockProduct>>() {
+                        @Override
+                        public void onChanged(List<StockProduct> stockProducts) {
+                            stockStoreViewModel.setStockProducts(stockProducts);
+                            extractProductAdapter.setProducts(stockProducts);
+                        }
+                    });
+                }
+                else
+                    stockStoreViewModel.loadAllTruckProduct().observe(ExtractActivity.this, new Observer<List<TruckProduct>>() {
+                        @Override
+                        public void onChanged(List<TruckProduct> stockProducts) {
+                            extractProductAdapter.setProducts(stockProducts);
+                        }
+                    });
             }
         });
 
@@ -69,7 +91,7 @@ public class ExtractActivity extends DaggerAppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_done:
                 // User chose the "Settings" item, show the app settings UI...
-                List<StockProduct> truckProductList =extractProductAdapter.getProductList();
+                List<? extends Product> truckProductList =extractProductAdapter.getProductList();
                 if(radioGroup.getCheckedRadioButtonId()==R.id.radio_from_truck){
                     for (int i=0;i<truckProductList.size();i++){
                         stockStoreViewModel.diductAmountFromTruck(truckProductList.get(i),Integer.parseInt(extractProductAdapter.getAmounts().get(i).getText().toString()));

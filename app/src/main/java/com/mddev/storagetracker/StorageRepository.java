@@ -51,7 +51,10 @@ public class StorageRepository {
     }
 
     public void updateProductInTruck(TruckProduct truckProduct) {
-        storageDataBase.TruckProductDao().updateProduct(truckProduct).subscribeOn(Schedulers.io()).subscribe();
+        if (truckProduct.getAmount()<=0)
+            deleteFromTruck(truckProduct);
+        else
+            storageDataBase.TruckProductDao().updateProduct(truckProduct).subscribeOn(Schedulers.io()).subscribe();
     }
 
 
@@ -65,7 +68,10 @@ public class StorageRepository {
     }
 
     public void updateProductInStock(StockProduct truckProduct) {
-        storageDataBase.StockProductDao().updateProduct(truckProduct).subscribeOn(Schedulers.io()).subscribe();
+        if(truckProduct.getAmount()<=0)
+            deleteFromStock(truckProduct);
+        else
+            storageDataBase.StockProductDao().updateProduct(truckProduct).subscribeOn(Schedulers.io()).subscribe();
     }
 
     public Single<TruckProduct> getTruckProduct(String name) {

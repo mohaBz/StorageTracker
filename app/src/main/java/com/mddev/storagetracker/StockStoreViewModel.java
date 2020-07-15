@@ -15,15 +15,28 @@ import io.reactivex.disposables.Disposable;
 
 public class StockStoreViewModel extends ViewModel {
     private StorageRepository storageRepository;
+    private List<StockProduct> stockProducts;
     @Inject
     public StockStoreViewModel(StorageRepository storageRepository){
         this.storageRepository=storageRepository;
 
     }
-    public LiveData<List<StockProduct>> loadAllTruckProduct(){
+    public LiveData<List<StockProduct>> loadAllStockProduct(){
         return storageRepository.getAllProductOnStock();
     }
-    public void diductAmountFromTruck(StockProduct stockProduct,final int amount){
+    public LiveData<List<TruckProduct>> loadAllTruckProduct(){
+        return storageRepository.getAllProductOnTruck();
+    }
+
+    public void setStockProducts(List<StockProduct> stockProducts) {
+        this.stockProducts = stockProducts;
+    }
+
+    public List<StockProduct> getStockProducts() {
+        return stockProducts;
+    }
+
+    public void diductAmountFromTruck(Product stockProduct, final int amount){
         storageRepository.getTruckProduct(stockProduct.getName()).subscribe(new SingleObserver<TruckProduct>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -45,18 +58,33 @@ public class StockStoreViewModel extends ViewModel {
         });
 
     }
-    public void diductAmountToTruck(StockProduct stockProduct, int amount){
-        int finalAmount= stockProduct.getAmount()-amount;
-        stockProduct.setAmount(finalAmount);
-        storageRepository.updateProductInStock(stockProduct);
-        TruckProduct truckProduct=new TruckProduct(stockProduct.getId(),stockProduct.getName(),stockProduct.getPrice(),stockProduct.getAmount(),stockProduct.getImageUri());
-        truckProduct.setAmount(amount);
-        try{
-            storageRepository.insertProductToTruck(truckProduct);
-        }
-        catch (Exception e){
-            storageRepository.updateProductInTruck(truckProduct);
-        }
+    public void diductAmountToTruck(Product stockProduct,final int amount){
+        storageRepository.getStockProduct(stockProduct.getName()).subscribe(new SingleObserver<StockProduct>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onSuccess(StockProduct stockProduct) {
+                int finalAmount= stockProduct.getAmount()-amount;
+                stockProduct.setAmount(finalAmount);
+                storageRepository.updateProductInStock((StockProduct)stockProduct);
+                TruckProduct truckProduct=new TruckProduct(stockProduct.getId(),stockProduct.getName(),stockProduct.getPrice(),stockProduct.getAmount(),stockProduct.getImageUri());
+                truckProduct.setAmount(amount);
+                try{
+                    storageRepository.insertProductToTruck(truckProduct);
+                }
+                catch (Exception e){
+                    storageRepository.updateProductInTruck(truckProduct);
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+        });
     }
 
     public void deleteFromStock(String name) {

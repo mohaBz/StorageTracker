@@ -22,14 +22,14 @@ import java.util.List;
 
 public class ExtractProductAdapter extends RecyclerView.Adapter<ExtractProductAdapter.ProductViewHolder> {
 
-    private List<StockProduct> products;
+    private List<? extends Product> products;
     private List<EditText> amounts;
     private Context context;
     public ExtractProductAdapter(Context context) {
         this.context=context;
     }
 
-    public void setProducts(List<StockProduct> products) {
+    public void setProducts(List<? extends Product> products) {
         this.products = products;
         this.amounts=new ArrayList<>();
         notifyDataSetChanged();
@@ -48,7 +48,7 @@ public class ExtractProductAdapter extends RecyclerView.Adapter<ExtractProductAd
 
     @Override
     public void onBindViewHolder(@NonNull  ProductViewHolder holder, int position) {
-        StockProduct product=products.get(position);
+        Product product=products.get(position);
         holder.onbindView(product);
     }
 
@@ -60,7 +60,7 @@ public class ExtractProductAdapter extends RecyclerView.Adapter<ExtractProductAd
             return products.size();
     }
 
-    public List<StockProduct> getProductList() {
+    public List<? extends Product> getProductList() {
         return this.products;
     }
 
@@ -79,7 +79,7 @@ public class ExtractProductAdapter extends RecyclerView.Adapter<ExtractProductAd
             productImage=itemView.findViewById(R.id.product_Image);
 
         }
-        public void onbindView(StockProduct truckProduct){
+        public void onbindView(Product truckProduct){
             nameTx.setText(truckProduct.getName());
             amounts.add(amountTx);
             amountTx.setMaxEms(truckProduct.getAmount());

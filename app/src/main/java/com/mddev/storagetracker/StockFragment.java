@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mddev.storagetracker.database.StockProduct;
-import com.mddev.storagetracker.database.TruckProduct;
 
 import java.util.List;
 
@@ -80,7 +79,7 @@ public class StockFragment extends DaggerFragment implements OnDeleteClickListne
         productsAdapter = new StockProductAdapter(getContext());
         productsAdapter.setOnDeleteClickListner(this);
         productRecyclerView.setAdapter(productsAdapter);
-        stockStoreViewModel.loadAllTruckProduct().observe(getViewLifecycleOwner(), new Observer<List<StockProduct>>() {
+        stockStoreViewModel.loadAllStockProduct().observe(getViewLifecycleOwner(), new Observer<List<StockProduct>>() {
             @Override
             public void onChanged(List<StockProduct> stockProducts) {
                 productsAdapter.setProducts(stockProducts);
