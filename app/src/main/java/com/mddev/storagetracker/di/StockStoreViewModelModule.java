@@ -1,7 +1,7 @@
 package com.mddev.storagetracker.di;
 
 import androidx.lifecycle.ViewModel;
-import com.mddev.storagetracker.StockStoreViewModel;
+import com.mddev.storagetracker.mainview.StockStoreViewModel;
 
 import dagger.Binds;
 import dagger.Module;

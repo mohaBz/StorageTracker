@@ -1,8 +1,10 @@
-package com.mddev.storagetracker;
+package com.mddev.storagetracker.mainview;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.mddev.storagetracker.database.Product;
+import com.mddev.storagetracker.StorageRepository;
 import com.mddev.storagetracker.database.StockProduct;
 import com.mddev.storagetracker.database.TruckProduct;
 
@@ -69,7 +71,7 @@ public class StockStoreViewModel extends ViewModel {
             public void onSuccess(StockProduct stockProduct) {
                 int finalAmount= stockProduct.getAmount()-amount;
                 stockProduct.setAmount(finalAmount);
-                storageRepository.updateProductInStock((StockProduct)stockProduct);
+                storageRepository.updateProductInStock(stockProduct);
                 TruckProduct truckProduct=new TruckProduct(stockProduct.getId(),stockProduct.getName(),stockProduct.getPrice(),stockProduct.getAmount(),stockProduct.getImageUri());
                 truckProduct.setAmount(amount);
                 try{

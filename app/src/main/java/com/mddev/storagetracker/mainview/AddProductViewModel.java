@@ -1,8 +1,9 @@
-package com.mddev.storagetracker;
+package com.mddev.storagetracker.mainview;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.mddev.storagetracker.StorageRepository;
 import com.mddev.storagetracker.database.StockProduct;
 
 

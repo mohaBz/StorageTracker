@@ -1,44 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExtractActivity">
+    tools:context=".extractview.ExtractActivity">
 
-    <RadioGroup
-        android:id="@+id/add_radio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RadioButton
-            android:id="@+id/radio_from_truck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="From Truck"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-        <RadioButton
-            android:id="@+id/radio_to_truck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:checked="true"
-            android:text="To Truck"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
-    </RadioGroup>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_extract_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_radio_group" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+      <fragment
+          android:id="@+id/main_frag"
+          android:name="androidx.navigation.fragment.NavHostFragment"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:defaultNavHost="true"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:navGraph="@navigation/extract_receipt_nav_graph" />
+</FrameLayout>

@@ -4,8 +4,6 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import com.mddev.storagetracker.Product;
-
 @Entity(tableName = "truckStore")
 public class TruckProduct implements Product {
 

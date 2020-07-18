@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/stockFragment"
-        android:name="com.mddev.storagetracker.StockFragment"
+        android:name="com.mddev.storagetracker.mainview.StockFragment"
         android:label="fragment_stock"
         tools:layout="@layout/fragment_stock" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/addProductFragment2"
-        android:name="com.mddev.storagetracker.AddProductFragment"
+        android:name="com.mddev.storagetracker.mainview.AddProductFragment"
         android:label="fragment_add_product"
         tools:layout="@layout/fragment_add_product" />
 </navigation>

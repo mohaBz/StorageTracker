@@ -10,8 +10,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExtractActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".extractview.ExtractActivity"
+            android:theme="@style/AppTheme_noAppBar"
+            >
+        </activity>
+        <activity android:name=".mainview.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

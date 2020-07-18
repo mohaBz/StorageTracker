@@ -26,7 +26,7 @@
                 android:textSize="16sp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:text="Product name: "
+                android:text="@string/product_name"
                 ></TextView>
             <TextView
                 android:id="@+id/product_name"
@@ -47,7 +47,7 @@
                 android:textSize="16sp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:text="Price: "
+                android:text="@string/price"
                 ></TextView>
             <TextView
                 android:id="@+id/product_price"
@@ -68,7 +68,7 @@
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:text="Amount: "
+                    android:text="@string/amount"
                     ></TextView>
             <TextView
                 android:id="@+id/product_amount"
@@ -87,7 +87,7 @@
             android:layout_gravity="right"
             android:layout_marginHorizontal="5dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textColor="@android:color/white"
             />
     </LinearLayout>

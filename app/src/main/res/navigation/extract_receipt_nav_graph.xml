@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/extract_receipt_nav_graph"
+    app:startDestination="@id/selectProductsFragment">
+    <fragment
+        android:id="@+id/selectProductsFragment"
+        android:name="com.mddev.storagetracker.SelectProductsFragment"
+        android:label="fragment_select_products"
+        tools:layout="@layout/fragment_select_products" >
+        <action
+            android:id="@+id/action_selectProductsFragment_to_receiptFragment"
+            app:destination="@id/receiptFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/receiptFragment"
+        android:name="com.mddev.storagetracker.ReceiptFragment"
+        android:label="fragment_receipt"
+        tools:layout="@layout/fragment_receipt" />
+</navigation>

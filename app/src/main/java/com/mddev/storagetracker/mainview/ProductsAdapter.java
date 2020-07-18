@@ -1,10 +1,9 @@
-package com.mddev.storagetracker;
+package com.mddev.storagetracker.mainview;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,22 +14,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mddev.storagetracker.database.StockProduct;
+import com.mddev.storagetracker.OnDeleteClickListner;
+import com.mddev.storagetracker.R;
 import com.mddev.storagetracker.database.TruckProduct;
 
 import java.io.IOException;
 import java.util.List;
 
-public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapter.ProductViewHoler> {
+public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductViewHoler> {
     private static final String TAG ="ProductViewHoler" ;
-    private List<StockProduct> products;
+    private List<TruckProduct> products;
     private Context context;
     private OnDeleteClickListner onDeleteClickListner;
-    public StockProductAdapter(Context context) {
+    public ProductsAdapter(Context context) {
         this.context=context;
     }
 
-    public void setProducts(List<StockProduct> products) {
+    public void setProducts(List<TruckProduct> products) {
         this.products = products;
         notifyDataSetChanged();
     }
@@ -48,8 +48,8 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHoler holder, int position) {
-        StockProduct product=products.get(position);
-        holder.onbindView(product);
+            TruckProduct product=products.get(position);
+            holder.onbindView(product);
     }
 
     @Override
@@ -70,6 +70,7 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
         private TextView amountTx;
         private ImageView productImage;
         private Button deleteBt;
+
         public ProductViewHoler(@NonNull View itemView) {
             super(itemView);
             nameTx=itemView.findViewById(R.id.product_name);
@@ -78,10 +79,10 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
             productImage=itemView.findViewById(R.id.product_Image);
             deleteBt=itemView.findViewById(R.id.bt_delete);
         }
-        public void onbindView(StockProduct stockProduct){
-            nameTx.setText(stockProduct.getName());
-            amountTx.setText(""+stockProduct.getAmount());
-            priceTx.setText(""+stockProduct.getPrice());
+        public void onbindView(TruckProduct truckProduct){
+            nameTx.setText(truckProduct.getName());
+            amountTx.setText(""+truckProduct.getAmount());
+            priceTx.setText(""+truckProduct.getPrice());
             deleteBt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -89,10 +90,10 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
                 }
             });
             Bitmap bitmap = null;
-            if (stockProduct.getImageUri()!=null){
+            if (truckProduct.getImageUri()!=null){
                 try {
                     Uri imageUri
-                            =Uri.parse(stockProduct.getImageUri());
+                        =Uri.parse(truckProduct.getImageUri());
 
                     bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
                     productImage.setImageBitmap(bitmap);
@@ -101,7 +102,7 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
                 }
             }
 
+
         }
     }
-
 }

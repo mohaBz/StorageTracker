@@ -1,4 +1,4 @@
-package com.mddev.storagetracker;
+package com.mddev.storagetracker.mainview;
 
 
 import android.os.Bundle;
@@ -18,7 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.mddev.storagetracker.database.StockProduct;
+import com.mddev.storagetracker.OnDeleteClickListner;
+import com.mddev.storagetracker.R;
+import com.mddev.storagetracker.ViewModelProviderFactory;
+import com.mddev.storagetracker.database.TruckProduct;
 
 import java.util.List;
 
@@ -30,22 +33,19 @@ import dagger.android.support.DaggerFragment;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StockFragment extends DaggerFragment implements OnDeleteClickListner {
+public class TruckFragment extends DaggerFragment implements OnDeleteClickListner {
+
     private FloatingActionButton addFab;
     private NavController navController;
     @Inject
     public ViewModelProviderFactory viewModelProviderFactory;
-    private StockStoreViewModel stockStoreViewModel;
+    private TruckStoreViewModel truckStoreViewModel;
     private RecyclerView productRecyclerView;
-    private StockProductAdapter productsAdapter;
+    private ProductsAdapter productsAdapter;
 
-    public StockFragment() {
+    public TruckFragment() {
         // Required empty public constructor
     }
-
-
-
-
 
     @Override
     public void onAttachFragment(@NonNull Fragment childFragment) {
@@ -63,7 +63,7 @@ public class StockFragment extends DaggerFragment implements OnDeleteClickListne
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        stockStoreViewModel = new ViewModelProvider(this, viewModelProviderFactory).get(StockStoreViewModel.class);
+        truckStoreViewModel = new ViewModelProvider(this, viewModelProviderFactory).get(TruckStoreViewModel.class);
         addFab = view.findViewById(R.id.add_to_truck);
         productRecyclerView = view.findViewById(R.id.rv_product_list);
         productRecyclerView.setHasFixedSize(true);
@@ -73,23 +73,24 @@ public class StockFragment extends DaggerFragment implements OnDeleteClickListne
         addFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.action_stockFragment_to_addProductFragment2);
+                navController.navigate(R.id.action_truckFragment_to_addProductFragment);
             }
         });
-        productsAdapter = new StockProductAdapter(getContext());
+        productsAdapter = new ProductsAdapter(getContext());
         productsAdapter.setOnDeleteClickListner(this);
         productRecyclerView.setAdapter(productsAdapter);
-        stockStoreViewModel.loadAllStockProduct().observe(getViewLifecycleOwner(), new Observer<List<StockProduct>>() {
+        truckStoreViewModel.loadAllTruckProduct().observe(getViewLifecycleOwner(), new Observer<List<TruckProduct>>() {
             @Override
-            public void onChanged(List<StockProduct> stockProducts) {
-                productsAdapter.setProducts(stockProducts);
+            public void onChanged(List<TruckProduct> truckProducts) {
+                productsAdapter.setProducts(truckProducts);
             }
         });
 
     }
 
+
     @Override
     public void onClick(String name) {
-        stockStoreViewModel.deleteFromStock(name);
+        truckStoreViewModel.deleteFromTruck(name);
     }
 }

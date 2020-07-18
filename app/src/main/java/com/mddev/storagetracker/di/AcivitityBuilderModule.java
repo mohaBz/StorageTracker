@@ -1,11 +1,11 @@
 package com.mddev.storagetracker.di;
 
 
-import com.mddev.storagetracker.AddProductFragment;
-import com.mddev.storagetracker.AddProductViewModel;
-import com.mddev.storagetracker.ExtractActivity;
-import com.mddev.storagetracker.StockFragment;
-import com.mddev.storagetracker.TruckFragment;
+import com.mddev.storagetracker.SelectProductsFragment;
+import com.mddev.storagetracker.mainview.AddProductFragment;
+import com.mddev.storagetracker.extractview.ExtractActivity;
+import com.mddev.storagetracker.mainview.StockFragment;
+import com.mddev.storagetracker.mainview.TruckFragment;
 
 import dagger.Module;
 import dagger.android.AndroidInjectionModule;
@@ -22,5 +22,7 @@ public abstract class AcivitityBuilderModule {
     abstract AddProductFragment contributeAddProductFargment();
     @ContributesAndroidInjector(modules = {StockStoreViewModelModule.class})
     abstract StockFragment contributeStockFargment();
+    @ContributesAndroidInjector(modules = {StockStoreViewModelModule.class})
+    abstract SelectProductsFragment contributeSelecttFragment();
 
 }

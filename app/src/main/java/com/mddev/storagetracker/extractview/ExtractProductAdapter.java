@@ -1,4 +1,4 @@
-package com.mddev.storagetracker;
+package com.mddev.storagetracker.extractview;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,7 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mddev.storagetracker.database.StockProduct;
+import com.mddev.storagetracker.database.Product;
+import com.mddev.storagetracker.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,17 +1,14 @@
-package com.mddev.storagetracker;
+package com.mddev.storagetracker.mainview;
 
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
@@ -23,11 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.mddev.storagetracker.database.StockProduct;
-import com.mddev.storagetracker.database.TruckProduct;
-
-import java.io.File;
-import java.util.List;
+import com.mddev.storagetracker.R;
+import com.mddev.storagetracker.ViewModelProviderFactory;
 
 import javax.inject.Inject;
 

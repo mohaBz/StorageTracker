@@ -2,7 +2,7 @@ package com.mddev.storagetracker.di;
 
 import androidx.lifecycle.ViewModel;
 
-import com.mddev.storagetracker.TruckStoreViewModel;
+import com.mddev.storagetracker.mainview.TruckStoreViewModel;
 
 import dagger.Binds;
 import dagger.Module;

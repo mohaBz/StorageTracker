@@ -26,7 +26,7 @@
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:text="Product name: "
+                    android:text="@string/product_name"
                     ></TextView>
                 <TextView
                     android:id="@+id/product_name"
@@ -47,7 +47,7 @@
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:text="Price: "
+                    android:text="@string/price"
                     ></TextView>
                 <TextView
                     android:id="@+id/product_price"
@@ -68,7 +68,7 @@
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:text="Amount: "
+                    android:text="@string/amount"
                     ></TextView>
                 <EditText
                     android:id="@+id/product_amount"
@@ -78,7 +78,7 @@
                     android:inputType="numberDecimal"
                     android:textSize="16sp"
                     android:textColor="@android:color/black"
-                    />
+                    android:autofillHints="" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

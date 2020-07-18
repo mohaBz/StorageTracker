@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/truckFragment"
-        android:name="com.mddev.storagetracker.TruckFragment"
+        android:name="com.mddev.storagetracker.mainview.TruckFragment"
         android:label="fragment_truck"
         tools:layout="@layout/fragment_truck" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/addProductFragment"
-        android:name="com.mddev.storagetracker.AddProductFragment"
+        android:name="com.mddev.storagetracker.mainview.AddProductFragment"
         android:label="fragment_add_product"
         tools:layout="@layout/fragment_add_product" />
     <activity
         android:id="@+id/extractActivity"
-        android:name="com.mddev.storagetracker.ExtractActivity"
+        android:name="com.mddev.storagetracker.extractview.ExtractActivity"
         android:label="activity_extract"
         tools:layout="@layout/activity_extract" />
 </navigation>

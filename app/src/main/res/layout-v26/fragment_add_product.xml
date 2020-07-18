@@ -60,18 +60,20 @@
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Price"
+        android:hint="@string/price_hint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rd_product_name"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/rd_product_name"
+        android:autofillHints=""></EditText>
     <EditText
         android:layout_margin="10dp"
         android:id="@+id/rd_product_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:hint="Amount"
+        android:hint="@string/amount_hint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rd_product_price"></EditText>
+        app:layout_constraintTop_toBottomOf="@+id/rd_product_price"
+        android:autofillHints=""></EditText>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

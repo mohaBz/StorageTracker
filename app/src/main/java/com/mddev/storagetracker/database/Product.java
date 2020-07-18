@@ -1,4 +1,4 @@
-package com.mddev.storagetracker;
+package com.mddev.storagetracker.database;
 
 public interface Product {
     int getId();
