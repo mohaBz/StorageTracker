@@ -8,6 +8,7 @@ import com.mddev.storagetracker.StorageRepository;
 import com.mddev.storagetracker.database.StockProduct;
 import com.mddev.storagetracker.database.TruckProduct;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,11 +19,20 @@ import io.reactivex.disposables.Disposable;
 public class StockStoreViewModel extends ViewModel {
     private StorageRepository storageRepository;
     private List<StockProduct> stockProducts;
+    private List<Product> productList;
     @Inject
     public StockStoreViewModel(StorageRepository storageRepository){
         this.storageRepository=storageRepository;
-
+        productList=new ArrayList<>();
     }
+    public void addToProducts(Product product){
+        productList.add(product);
+    }
+
+    public List<Product> getProductList() {
+        return this.productList;
+    }
+
     public LiveData<List<StockProduct>> loadAllStockProduct(){
         return storageRepository.getAllProductOnStock();
     }

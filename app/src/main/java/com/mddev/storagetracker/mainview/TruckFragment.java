@@ -35,8 +35,6 @@ import dagger.android.support.DaggerFragment;
  */
 public class TruckFragment extends DaggerFragment implements OnDeleteClickListner {
 
-    private FloatingActionButton addFab;
-    private NavController navController;
     @Inject
     public ViewModelProviderFactory viewModelProviderFactory;
     private TruckStoreViewModel truckStoreViewModel;
@@ -55,7 +53,6 @@ public class TruckFragment extends DaggerFragment implements OnDeleteClickListne
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        navController = Navigation.findNavController(container);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_truck, container, false);
     }
@@ -64,30 +61,28 @@ public class TruckFragment extends DaggerFragment implements OnDeleteClickListne
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         truckStoreViewModel = new ViewModelProvider(this, viewModelProviderFactory).get(TruckStoreViewModel.class);
-        addFab = view.findViewById(R.id.add_to_truck);
         productRecyclerView = view.findViewById(R.id.rv_product_list);
         productRecyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         productRecyclerView.setLayoutManager(layoutManager);
-        addFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                navController.navigate(R.id.action_truckFragment_to_addProductFragment);
-            }
-        });
         productsAdapter = new ProductsAdapter(getContext());
         productsAdapter.setOnDeleteClickListner(this);
         productRecyclerView.setAdapter(productsAdapter);
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         truckStoreViewModel.loadAllTruckProduct().observe(getViewLifecycleOwner(), new Observer<List<TruckProduct>>() {
             @Override
             public void onChanged(List<TruckProduct> truckProducts) {
                 productsAdapter.setProducts(truckProducts);
             }
         });
-
     }
-
 
     @Override
     public void onClick(String name) {

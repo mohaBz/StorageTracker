@@ -1,6 +1,7 @@
 package com.mddev.storagetracker.di;
 
 
+import com.mddev.storagetracker.ReceiptFragment;
 import com.mddev.storagetracker.SelectProductsFragment;
 import com.mddev.storagetracker.mainview.AddProductFragment;
 import com.mddev.storagetracker.extractview.ExtractActivity;
@@ -23,6 +24,8 @@ public abstract class AcivitityBuilderModule {
     @ContributesAndroidInjector(modules = {StockStoreViewModelModule.class})
     abstract StockFragment contributeStockFargment();
     @ContributesAndroidInjector(modules = {StockStoreViewModelModule.class})
-    abstract SelectProductsFragment contributeSelecttFragment();
+    abstract SelectProductsFragment contributeSelectFragment();
+    @ContributesAndroidInjector(modules = {StockStoreViewModelModule.class})
+    abstract ReceiptFragment contributeReceiptFragment();
 
 }

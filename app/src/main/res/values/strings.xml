@@ -16,4 +16,7 @@
     <string name="price">Price:</string>
     <string name="amount">Amount:</string>
     <string name="delete">Delete</string>
+    <string name="total">Total</string>
+    <string name="cost">cost</string>
+    <string name="extract">Extract</string>
 </resources>

@@ -9,6 +9,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,6 +47,7 @@ public class SelectProductsFragment extends DaggerFragment {
     private StockStoreViewModel stockStoreViewModel;
     private RadioGroup radioGroup;
     private androidx.appcompat.widget.Toolbar toolbar;
+    private NavController navController;
     @Inject
     public ViewModelProviderFactory viewModelProviderFactory;
 
@@ -57,13 +60,14 @@ public class SelectProductsFragment extends DaggerFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        navController=Navigation.findNavController(container);
         return inflater.inflate(R.layout.fragment_select_products, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        stockStoreViewModel=new ViewModelProvider(this,viewModelProviderFactory).get(StockStoreViewModel.class);
+        stockStoreViewModel=new ViewModelProvider(getActivity(),viewModelProviderFactory).get(StockStoreViewModel.class);
         productRv=view.findViewById(R.id.rv_extract_list);
         radioGroup=view.findViewById(R.id.add_radio_group);
         toolbar=view.findViewById(R.id.toolbar_select);
@@ -127,14 +131,21 @@ public class SelectProductsFragment extends DaggerFragment {
                 List<? extends Product> truckProductList =extractProductAdapter.getProductList();
                 if(radioGroup.getCheckedRadioButtonId()==R.id.radio_from_truck){
                     for (int i=0;i<truckProductList.size();i++){
-                        stockStoreViewModel.diductAmountFromTruck(truckProductList.get(i),Integer.parseInt(extractProductAdapter.getAmounts().get(i).getText().toString()));
+                        Product product=truckProductList.get(i);
+                        int amount=Integer.parseInt(extractProductAdapter.getAmounts().get(i).getText().toString());
+                        stockStoreViewModel.diductAmountFromTruck(product,amount);
+                        product.setAmount(amount);
+                        stockStoreViewModel.addToProducts(product);
                     }
+                    navController.navigate(R.id.action_selectProductsFragment_to_receiptFragment);
                 }
-                else
+                else{
                     for (int i=0;i<truckProductList.size();i++){
                         stockStoreViewModel.diductAmountToTruck(truckProductList.get(i),Integer.parseInt(extractProductAdapter.getAmounts().get(i).getText().toString()));
                     }
                     getActivity().finish();
+                }
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -4,6 +4,10 @@
     >
     <item
         android:id="@+id/action_extract"
-        android:title="Extract"
+        android:title="@string/extract"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_add"
+        android:title="@string/add"
         app:showAsAction="ifRoom"/>
 </menu>

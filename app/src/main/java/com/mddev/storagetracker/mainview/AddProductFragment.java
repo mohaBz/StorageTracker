@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -45,6 +47,7 @@ public class AddProductFragment extends DaggerFragment {
     private ImageView productImage;
     private Button insertButton;
     private String imageUrString;
+    NavController navController;
 
     public AddProductFragment() {
         // Required empty public constructor
@@ -55,6 +58,7 @@ public class AddProductFragment extends DaggerFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        navController= Navigation.findNavController(container);
         return inflater.inflate(R.layout.fragment_add_product, container, false);
     }
 
@@ -72,7 +76,7 @@ public class AddProductFragment extends DaggerFragment {
             @Override
             public void onClick(View viewClicked) {
                 addProductViewModel.addToTruck(nameEd.getText().toString(), Float.parseFloat(priceEd.getText().toString()), Integer.parseInt(amountEd.getText().toString()),imageUrString);
-                getParentFragmentManager().popBackStack();
+                navController.popBackStack();
             }
         });
         configurImagePicker();

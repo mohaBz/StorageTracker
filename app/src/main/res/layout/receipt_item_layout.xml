@@ -15,7 +15,7 @@
             android:id="@+id/product_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:text="@string/product_name_hint"
             android:textSize="16sp"
             android:textStyle="bold"/>
@@ -37,4 +37,12 @@
             android:text="@string/amount_hint"
             android:textSize="16sp"
             android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/cost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/cost"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
     </LinearLayout>

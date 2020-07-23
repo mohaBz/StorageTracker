@@ -6,42 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".mainview.MainActivity">
 
-  <com.google.android.material.tabs.TabLayout
-      android:id="@+id/tab_layout"
+
+
+  <fragment
+      android:id="@+id/main_frag"
+      android:name="androidx.navigation.fragment.NavHostFragment"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" >
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/truck"
-        android:icon="@drawable/ic_local_shipping_black_24dp"
-      />
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/stock"
-        android:icon="@drawable/ic_store_black_24dp"
-        />
-
-  </com.google.android.material.tabs.TabLayout>
-
-  <androidx.viewpager.widget.ViewPager
-      android:id="@+id/pager"
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
-
-
-<!--  <fragment-->
-<!--      android:id="@+id/main_frag"-->
-<!--      android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--      android:layout_width="match_parent"-->
-<!--      android:layout_height="match_parent"-->
-<!--      app:defaultNavHost="true"-->
-<!--      app:layout_constraintEnd_toEndOf="parent"-->
-<!--      app:layout_constraintTop_toTopOf="parent"-->
-<!--      app:navGraph="@navigation/home_navigation_graph" />-->
+      android:layout_height="match_parent"
+      app:defaultNavHost="true"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:navGraph="@navigation/home_navigation_graph" />
 </androidx.constraintlayout.widget.ConstraintLayout>
