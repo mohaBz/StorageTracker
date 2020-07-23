@@ -25,12 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        navController= Navigation.findNavController(findViewById(R.id.main_frag));
     }
 
     @Override
@@ -48,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(this, ExtractActivity.class));
                 return true;
             case R.id.action_add:
-                navController.navigate(R.id.action_mainFragment_to_addProductFragment);
+                startActivity(new Intent(this,AddActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

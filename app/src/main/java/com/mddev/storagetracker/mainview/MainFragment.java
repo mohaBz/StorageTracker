@@ -56,6 +56,13 @@ public class MainFragment extends Fragment {
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_store_black_24dp);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewPagerAdapter.addFragment(new TruckFragment(),"Truck");
+        viewPagerAdapter.addFragment(new StockFragment(),"Stock");
+    }
+
     private class ViewPagerAdapter extends FragmentPagerAdapter {
         List<Fragment> fragments;
         List<String> titles;
