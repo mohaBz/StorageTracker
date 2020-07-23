@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Storage Tracker</string>
+
+    <string name="from_truck">Au client</string>
+    <string name="to_truck">Au camion</string>
+    <string name="truck">Camion</string>
+    <string name="stock">Stock</string>
+    <string name="insert_image">Insérer image</string>
+    <string name="add">ajouter</string>
+    <string name="product_name_hint">Nom du produit</string>
+    <string name="price_hint">Prix</string>
+    <string name="amount_hint">Quantité</string>
+    <string name="product_name">Nom du produit:</string>
+    <string name="price">Prix:</string>
+    <string name="amount">Quantité:</string>
+    <string name="delete">Supprimer</string>
+    <string name="total">Totale</string>
+    <string name="cost">Coût</string>
+    <string name="extract">Extrait</string>
+    <string name="done">Terminé</string>
+    <string name="the_receipt">Facture</string>
+
+</resources>

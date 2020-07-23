@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Storage Tracker</string>
+
+    <string name="from_truck">للزبون</string>
+    <string name="to_truck">للشاحنة</string>
+    <string name="truck">الشاحنة</string>
+    <string name="stock">المخزن</string>
+    <string name="insert_image">ادخال صورة</string>
+    <string name="add">اضافة</string>
+    <string name="product_name_hint">اسم المنتج</string>
+    <string name="price_hint">السعر</string>
+    <string name="amount_hint">الكمية</string>
+    <string name="product_name">اسم المنتج: </string>
+    <string name="price">السعر: </string>
+    <string name="amount">الكمية:</string>
+    <string name="delete">حذف</string>
+    <string name="total">المجموع</string>
+    <string name="cost">التكلفة</string>
+    <string name="extract">استخراج</string>
+    <string name="done">حسنا</string>
+    <string name="the_receipt">الفاتورة</string>
+</resources>

@@ -20,7 +20,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The Receipt"
+        android:text="@string/the_receipt"
         android:textColor="@android:color/black"
         android:textSize="22sp"
         android:textStyle="bold"

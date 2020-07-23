@@ -49,8 +49,8 @@ public class MainFragment extends Fragment {
         tabLayout=view.findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         viewPagerAdapter=new MainFragment.ViewPagerAdapter(getParentFragmentManager(),0);
-        viewPagerAdapter.addFragment(new TruckFragment(),"Truck");
-        viewPagerAdapter.addFragment(new StockFragment(),"Stock");
+        viewPagerAdapter.addFragment(new TruckFragment(),getString(R.string.truck));
+        viewPagerAdapter.addFragment(new StockFragment(),getString(R.string.stock));
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_local_shipping_black_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_store_black_24dp);
@@ -59,8 +59,6 @@ public class MainFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        viewPagerAdapter.addFragment(new TruckFragment(),"Truck");
-        viewPagerAdapter.addFragment(new StockFragment(),"Stock");
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {

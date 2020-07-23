@@ -8,7 +8,7 @@
             android:id="@+id/product_Image"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@color/colorPrimaryDark"
+            android:src="@color/colorRedDark"
             android:layout_margin="5dp"
             />
         <LinearLayout
