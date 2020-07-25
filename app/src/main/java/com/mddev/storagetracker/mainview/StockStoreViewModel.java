@@ -78,18 +78,29 @@ public class StockStoreViewModel extends ViewModel {
             }
 
             @Override
-            public void onSuccess(StockProduct stockProduct) {
+            public void onSuccess(final StockProduct stockProduct) {
                 int finalAmount= stockProduct.getAmount()-amount;
                 stockProduct.setAmount(finalAmount);
                 storageRepository.updateProductInStock(stockProduct);
-                TruckProduct truckProduct=new TruckProduct(stockProduct.getId(),stockProduct.getName(),stockProduct.getPrice(),stockProduct.getAmount(),stockProduct.getImageUri());
-                truckProduct.setAmount(amount);
-                try{
-                    storageRepository.insertProductToTruck(truckProduct);
-                }
-                catch (Exception e){
-                    storageRepository.updateProductInTruck(truckProduct);
-                }
+
+                storageRepository.getTruckProduct(stockProduct.getName()).subscribe(new SingleObserver<TruckProduct>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(TruckProduct truckProduct) {
+                        truckProduct.setAmount(truckProduct.getAmount()+amount);
+                        storageRepository.updateProductInTruck(truckProduct);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        TruckProduct truckProduct=new TruckProduct(stockProduct.getId(),stockProduct.getName(),stockProduct.getPrice(),amount,stockProduct.getImageUri());
+                        storageRepository.insertProductToTruck(truckProduct);
+                    }
+                });
             }
 
             @Override

@@ -25,6 +25,10 @@ public class ReceitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public void setProducts(List<Product> products) {
+        for (int i=0;i<products.size();i++){
+            if (products.get(i).getAmount()<=0)
+                products.remove(i);
+        }
         this.products = products;
         notifyDataSetChanged();
     }
