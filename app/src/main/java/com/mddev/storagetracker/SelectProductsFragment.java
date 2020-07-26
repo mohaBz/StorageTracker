@@ -141,7 +141,9 @@ public class SelectProductsFragment extends DaggerFragment {
                 }
                 else{
                     for (int i=0;i<truckProductList.size();i++){
-                        stockStoreViewModel.diductAmountToTruck(truckProductList.get(i),Integer.parseInt(extractProductAdapter.getAmounts().get(i).getText().toString()));
+                        int amount=Integer.parseInt(extractProductAdapter.getAmounts().get(i).getText().toString());
+                        if (amount>0)
+                        stockStoreViewModel.diductAmountToTruck(truckProductList.get(i),amount);
                     }
                     getActivity().finish();
                 }
