@@ -1,16 +1,22 @@
 package com.mddev.storagetracker.extractview;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.mddev.storagetracker.database.Product;
 import com.mddev.storagetracker.R;
@@ -28,6 +34,7 @@ import dagger.android.support.DaggerAppCompatActivity;
 public class ExtractActivity extends DaggerAppCompatActivity {
 
 
+
 //    private RecyclerView productRv;
 //    private ExtractProductAdapter extractProductAdapter;
 //    private StockStoreViewModel stockStoreViewModel;
@@ -41,77 +48,9 @@ public class ExtractActivity extends DaggerAppCompatActivity {
         super.onCreate(savedInstanceState);
 //        stockStoreViewModel=new ViewModelProvider(this,viewModelProviderFactory).get(StockStoreViewModel.class);
         setContentView(R.layout.activity_extract);
-//        productRv=findViewById(R.id.rv_extract_list);
-//        radioGroup=findViewById(R.id.add_radio_group);
-//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//            }
-//        });
-//        productRv.setHasFixedSize(true);
-//        LinearLayoutManager layoutManager
-//                = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-//        productRv.setLayoutManager(layoutManager);
-//        extractProductAdapter=new ExtractProductAdapter(this);
-//        productRv.setAdapter(extractProductAdapter);
-//        stockStoreViewModel.loadAllStockProduct().observe(this, new Observer<List<StockProduct>>() {
-//            @Override
-//            public void onChanged(List<StockProduct> stockProducts) {
-//                stockStoreViewModel.setStockProducts(stockProducts);
-//                extractProductAdapter.setProducts(stockProducts);
-//            }
-//        });
-//        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                if(checkedId==R.id.radio_to_truck){
-//                    stockStoreViewModel.loadAllStockProduct().observe(ExtractActivity.this, new Observer<List<StockProduct>>() {
-//                        @Override
-//                        public void onChanged(List<StockProduct> stockProducts) {
-//                            stockStoreViewModel.setStockProducts(stockProducts);
-//                            extractProductAdapter.setProducts(stockProducts);
-//                        }
-//                    });
-//                }
-//                else
-//                    stockStoreViewModel.loadAllTruckProduct().observe(ExtractActivity.this, new Observer<List<TruckProduct>>() {
-//                        @Override
-//                        public void onChanged(List<TruckProduct> stockProducts) {
-//                            extractProductAdapter.setProducts(stockProducts);
-//                        }
-//                    });
-//            }
-//        });
 
     }
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.extract_app_bar_menu, menu);
-//        return true;
-//    }
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_done:
-//                // User chose the "Settings" item, show the app settings UI...
-//                List<? extends Product> truckProductList =extractProductAdapter.getProductList();
-//                if(radioGroup.getCheckedRadioButtonId()==R.id.radio_from_truck){
-//                    for (int i=0;i<truckProductList.size();i++){
-//                        stockStoreViewModel.diductAmountFromTruck(truckProductList.get(i),Integer.parseInt(extractProductAdapter.getAmounts().get(i).getText().toString()));
-//                    }
-//                }
-//                else
-//                    for (int i=0;i<truckProductList.size();i++){
-//                        stockStoreViewModel.diductAmountToTruck(truckProductList.get(i),Integer.parseInt(extractProductAdapter.getAmounts().get(i).getText().toString()));
-//                    }
-//                finish();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//
-//        }
-//    }
-    
+
+
 
 }

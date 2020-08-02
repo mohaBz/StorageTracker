@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Storage Tracker</string>
+    <string name="app_name">Easy Stockroom</string>
 
     <string name="from_truck">To Customer</string>
     <string name="to_truck">To Truck</string>
