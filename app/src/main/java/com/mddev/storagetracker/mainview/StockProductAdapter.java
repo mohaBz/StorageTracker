@@ -89,7 +89,7 @@ public class StockProductAdapter extends RecyclerView.Adapter<StockProductAdapte
                 }
             });
             Bitmap bitmap = null;
-            if (stockProduct.getImageUri()!=null){
+            if (stockProduct.getImageUri().isEmpty()){
                 try {
                     Uri imageUri
                             =Uri.parse(stockProduct.getImageUri());
